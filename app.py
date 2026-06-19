@@ -50,7 +50,7 @@ if st.session_state.courses:
         col1.write(course["Course"])
         col2.write(course["Grade"])
         col3.write(f'{course["Credits"]:g}')
-        col4.write(f'{course["Quality Points"]:.3f}')
+        col4.write(f'{course["Quality Points"] * course["Credits"]:.3f}')
         if col5.button("Remove", key=f"remove_{i}"):
             st.session_state.courses.pop(i)
             st.rerun()
