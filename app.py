@@ -41,17 +41,18 @@ if submitted:
 if st.session_state.courses:
     st.subheader("Your Courses")
 
-    header = st.columns([3, 1, 1, 2, 1])
-    for col, label in zip(header, ["Course", "Grade", "Credits", "Quality Points", "Action"]):
+    header = st.columns([3, 1, 2, 1, 2, 1])
+    for col, label in zip(header, ["Course", "Grade", "Grade Points", "Credits", "Quality Points", "Action"]):
         col.markdown(f"**{label}**")
 
     for i, course in enumerate(st.session_state.courses):
-        col1, col2, col3, col4, col5 = st.columns([3, 1, 1, 2, 1])
+        col1, col2, col3, col4, col5, col6 = st.columns([3, 1, 2, 1, 2, 1])
         col1.write(course["Course"])
         col2.write(course["Grade"])
-        col3.write(f'{course["Credits"]:g}')
-        col4.write(f'{course["Quality Points"] * course["Credits"]:.3f}')
-        if col5.button("Remove", key=f"remove_{i}"):
+        col3.write(f'{course["Quality Points"]:.3f}')
+        col4.write(f'{course["Credits"]:g}')
+        col5.write(f'{course["Quality Points"] * course["Credits"]:.3f}')
+        if col6.button("Remove", key=f"remove_{i}"):
             st.session_state.courses.pop(i)
             st.rerun()
 
