@@ -12,6 +12,14 @@ GRADE_POINTS = {
 }
 
 st.title("NYU GPA Calculator")
+st.caption("Calculate your GPA using NYU letter grades and credit hours.")
+
+with st.expander("How it works"):
+    st.markdown(
+        "- **Grade Points** come from the selected letter grade (e.g. A = 4.000)\n"
+        "- **Quality Points** = Grade Points × Credit Hours\n"
+        "- **GPA** = Total Quality Points ÷ Total Credits"
+    )
 
 if "courses" not in st.session_state:
     st.session_state.courses = []
@@ -69,3 +77,11 @@ if st.session_state.courses:
     if st.button("Reset"):
         st.session_state.courses = []
         st.rerun()
+
+st.divider()
+st.markdown("**Future improvements**")
+st.caption(
+    "- Student profile support\n"
+    "- Optional NYU email login\n"
+    "- Automatic course import"
+)
